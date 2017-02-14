@@ -49,6 +49,73 @@ Commit the configured container into a new image specific to your cloud.
 Run an container with the ec2stack command
 
     $ docker run -d -p 5000:5000 ec2stack:yourcloud ec2stack
+    
+Setup on [CentOS 7](https://www.centos.org/) or [Fedora](https://getfedora.org/)
+-------------------------------------------
+
+Install python-pip and git.
+
+    $ yum install python python-devel python-pip git
+    
+Upgrade requests package.
+
+    $ pip install --upgrade requests
+    
+Clone this repository.
+
+    $ git clone https://github.com/apache/cloudstack-ec2stack.git
+    $ cd cloudstack-ec2stack
+
+Proceed with installation.
+
+    $ python ./setup.py install
+
+Configure ec2stack for your CloudStack endpoint.
+
+    $ ec2stack-configure
+
+Run ec2stack
+
+    $ ec2stack
+
+... Or in debug mode
+
+    $ ec2stack -d DEBUG
+    
+Setup on [Debian 8](https://www.debian.org/) or [Ubuntu >=14.04](https://www.ubuntu.com/)
+-------------------------------------------
+
+Install python-pip and git.
+
+    $ apt-get update && apt-get install -y python python-dev python-pip git
+    
+Upgrade requests package.
+
+    $ pip install --upgrade requests
+    
+Clone this repository.
+
+    $ git clone https://github.com/apache/cloudstack-ec2stack.git
+    $ cd cloudstack-ec2stack
+
+Proceed with installation.
+
+    $ python ./setup.py install
+
+Configure ec2stack for your CloudStack endpoint.
+
+    $ ec2stack-configure
+
+Run ec2stack
+
+    $ ec2stack
+
+... Or in debug mode
+
+    $ ec2stack -d DEBUG
+    
+Usage
+-------------------------------------------
 
 Register a user
 
@@ -69,8 +136,10 @@ Configure the AWS cli by entreing your CloudStack cloud API keys, and the name o
 You now just need to configure your aws cli and use the local ec2stack point:
 
     $ aws ec2 describe-images --endpoint=http://localhost:5000
+    
+For more usage information please see the [User Guide](https://github.com/apache/cloudstack-ec2stack/blob/master/USER.md).
 
-Usage
+Limitations
 -----
 
 **IMPORTANT**: Please note that the current version of ec2stack only supports AWS Signature Version 2 and therefore will NOT work with the current AWS CLI unless you explicitly tell it to use Version 2.  You can set the signature version for your default AWS CLI profile with:
@@ -82,5 +151,3 @@ If you are using named profiles then you can set the version for the specific pr
     $ aws configure set profile.<your profile name>.ec2.signature_version v2
 
 Both of the above commands will update your *~/.aws/config* file.
-
-For usage information please see the [User Guide](https://github.com/apache/cloudstack-ec2stack/USER.md).
