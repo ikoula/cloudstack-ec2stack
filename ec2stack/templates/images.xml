@@ -3,9 +3,7 @@
     <imagesSet>
         {% for image in response.template %}
         <item>
-            <imageId>
-                {{ image.id }}
-            </imageId>
+            <imageId>{{ image.id }}</imageId>
             <name>{{ image.name }}</name>
             {% if image.isready == true %}
             <imageState>available</imageState>
